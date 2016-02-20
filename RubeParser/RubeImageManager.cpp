@@ -10,8 +10,9 @@ cocos2d::Node* RubeImageManager::createSpriteWithNodeAt(int index) {
     auto sprite = Sprite::create(imagePath);
     float rubeScaledPixel = rubeImage->getScale() * rubeObjectScale;
     auto size = sprite->getTexture()->getContentSize();
-    float max = std::max(size.width, size.height);
-    sprite->setScale(1/(max/rubeScaledPixel));
+    float height = size.height;
+    sprite->setScale(1/(height/rubeScaledPixel));
+    sprite->setPosition(rubeImage->getPosition() * rubeObjectScale);
     node->addChild(sprite);
     return node;
 }
