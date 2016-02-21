@@ -221,7 +221,7 @@ void RubeParser::setImageIndexToBody(RubeObject* rubeObject) {
             continue;
         }
         auto body = bodyManager->getAt(bodyIndex);
-        body->setIndexImage(i);
+        body->addImageIndex(i);
     }
 }
 

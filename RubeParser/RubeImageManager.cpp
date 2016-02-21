@@ -2,8 +2,8 @@
 
 USING_NS_CC;
 
-cocos2d::Node* RubeImageManager::createSpriteWithNodeAt(int index) {
-    auto node = Node::create();
+cocos2d::Sprite* RubeImageManager::createSpriteAt(int index)
+{
     auto rubeImage = images[index];
     auto rubeObjectScale = this->getRubeObject()->getScale();
     auto imagePath = pathDirectoryRubeJson + rubeImage->getFile();
@@ -11,10 +11,12 @@ cocos2d::Node* RubeImageManager::createSpriteWithNodeAt(int index) {
     float rubeScaledPixel = rubeImage->getScale() * rubeObjectScale;
     auto size = sprite->getTexture()->getContentSize();
     float height = size.height;
-    sprite->setScale(1/(height/rubeScaledPixel));
+    float baseScale = 1/(height/rubeScaledPixel);
+    sprite->setScaleX(rubeImage->getAspectScale() * baseScale);
+    sprite->setScaleY(1 * baseScale);
+    sprite->setRotation(CC_RADIANS_TO_DEGREES(-rubeImage->getAngle()));
     sprite->setPosition(rubeImage->getPosition() * rubeObjectScale);
-    node->addChild(sprite);
-    return node;
+    return sprite;
 }
 
 int RubeImageManager::size() {

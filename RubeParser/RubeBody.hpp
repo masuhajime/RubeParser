@@ -13,7 +13,6 @@ class RubeBody
     CC_SYNTHESIZE(cocos2d::Vec2, offset, Offset);
     CC_SYNTHESIZE(float, scale, Scale);
     CC_SYNTHESIZE(int, indexBody, IndexBody);
-    CC_SYNTHESIZE(int, indexImage, IndexImage);
     
     // Rube properties
     CC_SYNTHESIZE(std::string, name, Name);
@@ -23,19 +22,19 @@ class RubeBody
     CC_SYNTHESIZE(bool, rotationEnable, RotationEnable);
 private:
     std::vector<RubeFixture*> fixtures;
+    std::vector<int> imageIndexes;
     
 public:
     RubeBody();
+    
+    void addImageIndex(int imageIndex);
     
     void addFixture(RubeFixture* fixture);
     
     const std::vector<RubeFixture*>* getFixtures();
     
     cocos2d::Node* createNode();
-    
-    cocos2d::Node* createNodeSprite(RubeImageManager* rubeImageManager);
-    
-    cocos2d::Node* createSpriteIfHasImage(RubeImageManager* rubeImageManager);
+    cocos2d::Node* createNodeWithSprite(RubeImageManager* rubeImageManager);
     
     cocos2d::PhysicsBody* createPhysicsBody();
     

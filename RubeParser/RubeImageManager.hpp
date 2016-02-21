@@ -15,13 +15,13 @@ private:
     std::vector<RubeImage*> images;
     
 public:
-    cocos2d::Node* createSpriteWithNodeAt(int index);
-    
     int size();
     
     RubeImage* getAt(int index);
     
     void add(RubeImage* image);
+    
+    cocos2d::Sprite* createSpriteAt(int index);
     
     ~RubeImageManager();
 };

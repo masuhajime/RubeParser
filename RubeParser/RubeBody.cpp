@@ -1,6 +1,6 @@
 #include "RubeBody.hpp"
 
-RubeBody::RubeBody():indexImage(-1){};
+RubeBody::RubeBody(){};
 
 void RubeBody::addFixture(RubeFixture* fixture) {
     fixtures.push_back(fixture);
@@ -16,17 +16,18 @@ cocos2d::Node* RubeBody::createNode() {
     return node;
 }
 
-cocos2d::Node* RubeBody::createNodeSprite(RubeImageManager* rubeImageManager) {
-    auto node = rubeImageManager->createSpriteWithNodeAt(this->indexImage);
-    node->setPosition((this->position * scale) + offset);
+cocos2d::Node* RubeBody::createNodeWithSprite(RubeImageManager* rubeImageManager) {
+    auto node = this->createNode();
+    for (auto imageIndex : imageIndexes) {
+        auto sprite = rubeImageManager->createSpriteAt(imageIndex);
+        node->addChild(sprite);
+    }
     return node;
 }
 
-cocos2d::Node* RubeBody::createSpriteIfHasImage(RubeImageManager* rubeImageManager) {
-    if (0 <= this->indexImage) {
-        return this->createNodeSprite(rubeImageManager);
-    }
-    return this->createNode();
+
+void RubeBody::addImageIndex(int imageIndex) {
+    this->imageIndexes.push_back(imageIndex);
 }
 
 

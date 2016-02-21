@@ -20,7 +20,7 @@ cocos2d::Node* RubeBodyManager::createNodeWithSpriteAt(int index)
     auto body = this->bodies[index];
     body->setScale(rubeObject->getScale());
     body->setOffset(rubeObject->getOffset());
-    auto node = body->createSpriteIfHasImage(imageManager);
+    auto node = body->createNodeWithSprite(imageManager);
     node->addComponent(body->createPhysicsBody());
     node->setName(body->getName());
     bodyNodes[index] = node;
