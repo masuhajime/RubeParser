@@ -33,5 +33,7 @@ public:
     
     void addImage(RubeImage* image);
     
+    cocos2d::Node* createByName(const char* name);
+    
     ~RubeObject();
 };

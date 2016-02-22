@@ -28,14 +28,14 @@ cocos2d::Node* RubeBodyManager::createNodeWithSpriteAt(int index)
 }
 
 int RubeBodyManager::size() {
-    return bodies.size();
+    return (int)bodies.size();
 }
 
 void RubeBodyManager::add(RubeBody* body) {
     // bodyのNode*を格納するために vectorのサイズを拡張
     bodyNodes.resize((int)bodies.size() + 1);
     bodyNodes[(int)bodies.size()] = nullptr;
-    body->setIndexBody(bodies.size());
+    body->setIndexBody(this->size());
     bodies.push_back(body);
 }
 
@@ -45,6 +45,20 @@ RubeBody* RubeBodyManager::getAt(int index) {
 
 cocos2d::Node* RubeBodyManager::getNodeAt(int index) {
     return this->bodyNodes[index];
+}
+
+cocos2d::Node* RubeBodyManager::createNodeWithSpriteByName(const char* bodyName)
+{
+    int size = this->size();
+    for (int i = 0; i < size; i++) {
+        auto body = this->bodies[i];
+        if (body->isName(bodyName)) {
+            //return body->createNodeWithSprite(this->getRubeObject()->getImageManager());
+            return this->createNodeWithSpriteAt(body->getIndexBody());
+        }
+    }
+    log("body name:%s not found", bodyName);
+    return nullptr;
 }
 
 RubeBodyManager::~RubeBodyManager() {

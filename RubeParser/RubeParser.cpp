@@ -54,6 +54,13 @@ void RubeParser::parseBodyTo(RubeObject* rubeObject, rapidjson::Value& value) {
     if (value.HasMember("position")) {
         body->setPosition(RubeParser::parseVectorToVec2(value["position"]));
     }
+    // damping
+    if (value.HasMember("angularDamping")) {
+        body->setAngularDamping(value["angularDamping"].GetDouble());
+    }
+    if (value.HasMember("linearDamping")) {
+        body->setLinearDamping(value["linearDamping"].GetDouble());
+    }
     // fixtures
     rapidjson::Value& valueFixtures = value["fixture"];
     for (auto it = valueFixtures.Begin(); it != valueFixtures.End(); it++) {
@@ -72,6 +79,19 @@ void RubeParser::parseFixtureMaterial(RubeFixture* fixture, rapidjson::Value& va
     }
     if (value.HasMember("density")) {
         fixture->setDensity(value["density"].GetDouble());
+    }
+    if (value.HasMember("restitution")) {
+        fixture->setRestitution(value["restitution"].GetDouble());
+    }
+    if (value.HasMember("filter-categoryBits")) {
+        fixture->setFilterCategoryBits(value["filter-categoryBits"].GetInt());
+    } else {
+        fixture->setFilterMaskBits(1);
+    }
+    if (value.HasMember("filter-maskBits")) {
+        fixture->setFilterCategoryBits(value["filter-maskBits"].GetInt());
+    } else {
+        fixture->setFilterMaskBits(65535);
     }
     if (value.HasMember("restitution")) {
         fixture->setRestitution(value["restitution"].GetDouble());

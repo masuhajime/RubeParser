@@ -20,6 +20,9 @@ class RubeBody
     CC_SYNTHESIZE(cocos2d::Vec2, position, Position);
     CC_SYNTHESIZE(int, bodyType, BodyType);
     CC_SYNTHESIZE(bool, rotationEnable, RotationEnable);
+    
+    CC_SYNTHESIZE(float, angularDamping, AngularDamping);
+    CC_SYNTHESIZE(float, linearDamping, LinearDamping);
 private:
     std::vector<RubeFixture*> fixtures;
     std::vector<int> imageIndexes;
@@ -37,6 +40,8 @@ public:
     cocos2d::Node* createNodeWithSprite(RubeImageManager* rubeImageManager);
     
     cocos2d::PhysicsBody* createPhysicsBody();
+    
+    bool isName(const char* name);
     
     ~RubeBody();
 };

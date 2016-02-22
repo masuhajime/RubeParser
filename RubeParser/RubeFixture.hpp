@@ -9,6 +9,9 @@ class RubeFixture
     CC_SYNTHESIZE(float, friction, Friction);
     CC_SYNTHESIZE(float, restitution, Restitution);
     CC_SYNTHESIZE(float, density, Density);
+    
+    CC_SYNTHESIZE(int, filterCategoryBits, FilterCategoryBits);
+    CC_SYNTHESIZE(int, filterMaskBits, FilterMaskBits);
 public:
     enum class TYPE_FIXTURE : int {
         CIRCLE,

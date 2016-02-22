@@ -24,6 +24,8 @@ cocos2d::PhysicsShapePolygon* RubeFixturePolygon::getShape(float scale) {
     for (auto it = vertices.begin(); it != vertices.end(); it++) {
         (*it) = (*it) / scale;
     }
+    shape->setCategoryBitmask(this->getFilterCategoryBits());
+    shape->setCategoryBitmask(this->getFilterMaskBits());
     return shape;
 }
 

@@ -30,5 +30,7 @@ public:
     
     cocos2d::Node* createNodeWithSpriteAt(int index);
     
+    cocos2d::Node* createNodeWithSpriteByName(const char* bodyName);
+    
     ~RubeBodyManager();
 };
