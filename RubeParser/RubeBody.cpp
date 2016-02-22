@@ -25,6 +25,13 @@ cocos2d::Node* RubeBody::createNodeWithSprite(RubeImageManager* rubeImageManager
     return node;
 }
 
+void RubeBody::createSpriteInto(cocos2d::Node* node, RubeImageManager* rubeImageManager) {
+    for (auto imageIndex : imageIndexes) {
+        auto sprite = rubeImageManager->createSpriteAt(imageIndex);
+        node->addChild(sprite);
+    }
+}
+
 bool RubeBody::isName(const char* name) {
     return 0 == this->name.compare(name);
 }
@@ -45,9 +52,11 @@ cocos2d::PhysicsBody* RubeBody::createPhysicsBody() {
     }
     pb->setLinearDamping(this->getLinearDamping());
     pb->setAngularDamping(this->getAngularDamping());
+    /*
     pb->setCollisionBitmask(1);// TODO:
     pb->setCategoryBitmask(1);
     pb->setContactTestBitmask(1);
+     */
     return pb;
 }
 

@@ -14,7 +14,7 @@ cocos2d::Sprite* RubeImageManager::createSpriteAt(int index)
     float height = size.height;
     float baseScale = 1/(height/rubeScaledPixel);
     sprite->setScaleX(rubeImage->getAspectScale() * baseScale);
-    sprite->setScaleY(1 * baseScale);
+    sprite->setScaleY(baseScale);
     sprite->setRotation(CC_RADIANS_TO_DEGREES(-rubeImage->getAngle()));
     sprite->setPosition(rubeImage->getPosition() * rubeObjectScale);
     return sprite;

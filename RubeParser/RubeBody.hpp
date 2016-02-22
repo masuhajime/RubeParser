@@ -38,6 +38,7 @@ public:
     
     cocos2d::Node* createNode();
     cocos2d::Node* createNodeWithSprite(RubeImageManager* rubeImageManager);
+    void createSpriteInto(cocos2d::Node* node, RubeImageManager* rubeImageManager);
     
     cocos2d::PhysicsBody* createPhysicsBody();
     

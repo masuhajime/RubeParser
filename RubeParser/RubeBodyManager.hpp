@@ -22,15 +22,31 @@ public:
     
     void add(RubeBody* body);
     
+    cocos2d::Node* createNodeFromBody(RubeBody* rubeBody);
+    
+    /**
+     * RubeParse内で std::vector<int> RubeBody::imageIndexes に
+     * indexを追加するために利用する
+     */
     RubeBody* getAt(int index);
     
+    /**
+     * RubeJointに Node* を渡す為に利用する
+     */
     cocos2d::Node* getNodeAt(int index);
     
-    cocos2d::Node* createNodeAt(int index);
-    
+    /**
+     *
+     */
     cocos2d::Node* createNodeWithSpriteAt(int index);
     
+    /**
+     *
+     */
     cocos2d::Node* createNodeWithSpriteByName(const char* bodyName);
+    
+    void createBodyInto(cocos2d::Node* node, const char* bodyName);
+    RubeBody* findBodyByName(const char* bodyName);
     
     ~RubeBodyManager();
 };
