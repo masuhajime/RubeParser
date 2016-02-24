@@ -1,6 +1,17 @@
 #include "RubeBody.hpp"
 
-RubeBody::RubeBody(){};
+RubeBody::RubeBody():
+offset(Vec2::ZERO),
+scale(1),
+indexBody(-1),
+name(""),
+angle(0),
+position(Vec2::ZERO),
+bodyType(0),
+rotationEnable(true),
+angularDamping(0.0f),
+linearDamping(0.0f)
+{};
 
 void RubeBody::addFixture(RubeFixture* fixture) {
     fixtures.push_back(fixture);

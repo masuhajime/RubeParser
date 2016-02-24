@@ -57,13 +57,9 @@ void RubeParser::parseBodyTo(RubeObject* rubeObject, rapidjson::Value& value) {
     // damping
     if (value.HasMember("angularDamping")) {
         body->setAngularDamping(value["angularDamping"].GetDouble());
-    } else {
-        body->setAngularDamping(0);
     }
     if (value.HasMember("linearDamping")) {
         body->setLinearDamping(value["linearDamping"].GetDouble());
-    } else {
-        body->setLinearDamping(0);
     }
     // fixtures
     rapidjson::Value& valueFixtures = value["fixture"];
