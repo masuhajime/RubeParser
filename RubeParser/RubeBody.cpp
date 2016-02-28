@@ -52,6 +52,9 @@ void RubeBody::addImageIndex(int imageIndex) {
 }
 
 cocos2d::PhysicsBody* RubeBody::createPhysicsBody() {
+    if (0 == fixtures.size()) {
+        return nullptr;
+    }
     auto pb = cocos2d::PhysicsBody::create();
     pb->setRotationEnable(this->getRotationEnable());
     if (this->getBodyType() == 0) { //0 = static, 1 = kinematic, 2 = dynamic
@@ -63,11 +66,11 @@ cocos2d::PhysicsBody* RubeBody::createPhysicsBody() {
     }
     pb->setLinearDamping(this->getLinearDamping());
     pb->setAngularDamping(this->getAngularDamping());
-    /*
+    
     pb->setCollisionBitmask(1);// TODO:
     pb->setCategoryBitmask(1);
     pb->setContactTestBitmask(1);
-     */
+    
     return pb;
 }
 

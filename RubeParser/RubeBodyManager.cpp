@@ -21,7 +21,10 @@ cocos2d::Node* RubeBodyManager::createNodeFromBody(RubeBody* rubeBody)
     rubeBody->setScale(rubeObject->getScale());
     rubeBody->setOffset(rubeObject->getOffset());
     auto node = rubeBody->createNodeWithSprite(imageManager);
-    node->addComponent(rubeBody->createPhysicsBody());
+    PhysicsBody* physicsBody = rubeBody->createPhysicsBody();
+    if (nullptr != physicsBody) {
+        node->addComponent(physicsBody);
+    }
     node->setName(rubeBody->getName());
     bodyNodes[rubeBody->getIndexBody()] = node;
     return node;

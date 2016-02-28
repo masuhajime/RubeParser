@@ -32,7 +32,7 @@ void RubeParser::parseBodiesTo(RubeObject* rubeObject, rapidjson::Document& d) {
 void RubeParser::parseBodyTo(RubeObject* rubeObject, rapidjson::Value& value) {
     if (!value.HasMember("angle")
         || !value.HasMember("name")
-        || !value.HasMember("fixture")
+        //|| !value.HasMember("fixture") // zero fixutre body not have fixture
         || !value.HasMember("type")
         || !value.HasMember("position")) {
         return;
@@ -62,12 +62,14 @@ void RubeParser::parseBodyTo(RubeObject* rubeObject, rapidjson::Value& value) {
         body->setLinearDamping(value["linearDamping"].GetDouble());
     }
     // fixtures
-    rapidjson::Value& valueFixtures = value["fixture"];
-    for (auto it = valueFixtures.Begin(); it != valueFixtures.End(); it++) {
-        if((*it).HasMember("polygon")) {
-            RubeParser::parseFixturePolygonTo(body, (*it));
-        } else if ((*it).HasMember("circle")) {
-            RubeParser::parseFixtureCircleTo(body, (*it));
+    if (value.HasMember("fixture")) {
+        rapidjson::Value& valueFixtures = value["fixture"];
+        for (auto it = valueFixtures.Begin(); it != valueFixtures.End(); it++) {
+            if((*it).HasMember("polygon")) {
+                RubeParser::parseFixturePolygonTo(body, (*it));
+            } else if ((*it).HasMember("circle")) {
+                RubeParser::parseFixtureCircleTo(body, (*it));
+            }
         }
     }
     rubeObject->addBody(body);
