@@ -10,6 +10,7 @@
 
 #include "RubeObject.hpp"
 #include "RubeJointRevolute.hpp"
+#include "RubeCustomProperty.hpp"
 
 USING_NS_CC;
 
@@ -41,6 +42,8 @@ private:
     static void parseImagesTo(RubeObject* rubeObject, rapidjson::Document& d);
     
     static void parseImageTo(RubeObject* rubeObject, rapidjson::Value& value);
+    
+    static void parseCustomPeropertyTo(RubeCustomProperty* object, rapidjson::Value& value);
     
     static void setImageIndexToBody(RubeObject* rubeObject);
     

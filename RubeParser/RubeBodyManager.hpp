@@ -47,6 +47,7 @@ public:
     
     void createBodyInto(cocos2d::Node* node, const char* bodyName);
     RubeBody* findBodyByName(const char* bodyName);
+    void each(std::function<void(RubeBody* body, cocos2d::Node* node)> function);
     
     ~RubeBodyManager();
 };

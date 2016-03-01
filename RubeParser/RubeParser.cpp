@@ -72,6 +72,7 @@ void RubeParser::parseBodyTo(RubeObject* rubeObject, rapidjson::Value& value) {
             }
         }
     }
+    RubeParser::parseCustomPeropertyTo(body, value);
     rubeObject->addBody(body);
 }
 
@@ -230,6 +231,34 @@ void RubeParser::parseImageTo(RubeObject* rubeObject, rapidjson::Value& value) {
     image->setScale(value["scale"].GetDouble());
     
     rubeObject->addImage(image);
+}
+
+void RubeParser::parseCustomPeropertyTo(RubeCustomProperty* object, rapidjson::Value& value) {
+    if (!value.HasMember("customProperties")) {
+        return;
+    }
+    rapidjson::Value& customProperties = value["customProperties"];
+    if (!customProperties.IsArray()) {
+        return;
+    }
+    for (auto it = customProperties.Begin(); it != customProperties.End(); it++) {
+        rapidjson::Value& customValue = (*it);
+        cocos2d::Value cocos2dValue;
+        // "int", "float", "string", "vec2", "color" or "bool"
+        if (customValue.HasMember("int")) {
+            cocos2dValue = customValue["int"].GetInt();
+        } else if (customValue.HasMember("float")) {
+            cocos2dValue = customValue["float"].GetDouble();
+        } else if (customValue.HasMember("string")) {
+            cocos2dValue = customValue["string"].GetString();
+        } else if (customValue.HasMember("bool")) {
+            cocos2dValue = customValue["bool"].GetBool();
+        }
+        object->setCustomProperty(
+                                  customValue["name"].GetString(),
+                                  cocos2dValue
+                                  );
+    }
 }
 
 void RubeParser::setImageIndexToBody(RubeObject* rubeObject) {

@@ -6,9 +6,10 @@
 
 #include "RubeFixture.hpp"
 #include "RubeImageManager.hpp"
+#include "RubeCustomProperty.hpp"
 class RubeImageManager;
 
-class RubeBody
+class RubeBody : public RubeCustomProperty
 {
     CC_SYNTHESIZE(cocos2d::Vec2, offset, Offset);
     CC_SYNTHESIZE(float, scale, Scale);

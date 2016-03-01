@@ -68,6 +68,22 @@ RubeBody* RubeBodyManager::findBodyByName(const char* bodyName)
     return nullptr;
 }
 
+
+void RubeBodyManager::each(std::function<void(RubeBody* body, cocos2d::Node* node)> function) {
+    int countBodies = this->bodies.size();
+    int countBodyNodes = this->bodyNodes.size();
+    if (countBodies != countBodyNodes) {
+        log("count mismatch on RubeBodyManager::each(%d != %d)", countBodies, countBodyNodes);
+        return;
+    }
+    for (int i = 0; i < countBodies; ++i) {
+        function(
+             this->bodies[i],
+             this->bodyNodes[i]
+        );
+    }
+}
+
 cocos2d::Node* RubeBodyManager::createNodeWithSpriteByName(const char* bodyName)
 {
     auto body = this->findBodyByName(bodyName);
