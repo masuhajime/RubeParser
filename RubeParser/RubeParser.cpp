@@ -89,10 +89,10 @@ void RubeParser::parseFixtureMaterial(RubeFixture* fixture, rapidjson::Value& va
     if (value.HasMember("filter-categoryBits")) {
         fixture->setFilterCategoryBits(value["filter-categoryBits"].GetInt());
     } else {
-        fixture->setFilterMaskBits(1);
+        fixture->setFilterCategoryBits(1);
     }
     if (value.HasMember("filter-maskBits")) {
-        fixture->setFilterCategoryBits(value["filter-maskBits"].GetInt());
+        fixture->setFilterMaskBits(value["filter-maskBits"].GetInt());
     } else {
         fixture->setFilterMaskBits(65535);
     }

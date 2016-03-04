@@ -66,6 +66,8 @@ cocos2d::PhysicsBody* RubeBody::createPhysicsBody() {
     }
     pb->setLinearDamping(this->getLinearDamping());
     pb->setAngularDamping(this->getAngularDamping());
+    //pb->setCollisionBitmask(1);
+    //pb->setCategoryBitmask(1);
     
     return pb;
 }

@@ -15,7 +15,7 @@ cocos2d::PhysicsShapeCircle* RubeFixtureCircle::getShape(float scale) {
                                                      this->position * scale// offset
                                                      );
     shape->setCategoryBitmask(this->getFilterCategoryBits());
-    shape->setCategoryBitmask(this->getFilterMaskBits());
+    shape->setCollisionBitmask(this->getFilterMaskBits());
     return shape;
 }
 
