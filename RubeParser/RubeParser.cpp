@@ -224,6 +224,9 @@ void RubeParser::parseImageTo(RubeObject* rubeObject, rapidjson::Value& value) {
     if (value.HasMember("angle")) {
         image->setAngle(value["angle"].GetDouble());
     }
+    if (value.HasMember("flip")) {
+        image->setFlip(value["flip"].GetBool());
+    }
     image->setFile(value["file"].GetString());
     image->setFilter(value["filter"].GetInt());
     image->setName(value["name"].GetString());
