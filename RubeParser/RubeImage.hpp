@@ -17,4 +17,5 @@ class RubeImage
     CC_SYNTHESIZE(float, scale, Scale);// 画像の拡大率
     CC_SYNTHESIZE(float, aspectScale, AspectScale);// 縦横比
     CC_SYNTHESIZE(float, angle, Angle);
+    CC_SYNTHESIZE(bool, flip, Flip);
 };

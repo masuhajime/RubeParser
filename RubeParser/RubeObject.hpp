@@ -33,7 +33,9 @@ public:
     
     void addImage(RubeImage* image);
     
-    cocos2d::Node* createByName(const char* name);
+    cocos2d::Node* createNodeWithSpriteByName(const char* name);
+    
+    RubeBody* findBodyByName(const char* name);
     
     ~RubeObject();
 };

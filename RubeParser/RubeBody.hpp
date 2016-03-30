@@ -45,5 +45,7 @@ public:
     
     bool isName(const char* name);
     
+    cocos2d::Vec2 getPositionScaledAndOffset();
+    
     ~RubeBody();
 };

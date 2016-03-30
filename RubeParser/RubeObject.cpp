@@ -9,8 +9,13 @@ RubeObject::RubeObject() {
     imageManager->setRubeObject(this);
 };
 
-cocos2d::Node* RubeObject::createByName(const char* name) {
+cocos2d::Node* RubeObject::createNodeWithSpriteByName(const char* name) {
     return this->bodyManager->createNodeWithSpriteByName(name);
+}
+
+
+RubeBody* RubeObject::findBodyByName(const char* name) {
+    return this->getBodyManager()->findBodyByName(name);
 }
 
 void RubeObject::setPathDirectoryRubeJson(std::string directoryPath) {

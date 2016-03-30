@@ -26,6 +26,7 @@ cocos2d::Node* RubeBodyManager::createNodeFromBody(RubeBody* rubeBody)
         node->addComponent(physicsBody);
     }
     node->setName(rubeBody->getName());
+    node->setRotation(CC_RADIANS_TO_DEGREES(rubeBody->getAngle()));
     bodyNodes[rubeBody->getIndexBody()] = node;
     return node;
 }
@@ -61,6 +62,8 @@ RubeBody* RubeBodyManager::findBodyByName(const char* bodyName)
     for (int i = 0; i < size; i++) {
         auto body = this->bodies[i];
         if (body->isName(bodyName)) {
+            body->setScale(rubeObject->getScale());
+            body->setOffset(rubeObject->getOffset());
             return body;
         }
     }
@@ -70,8 +73,8 @@ RubeBody* RubeBodyManager::findBodyByName(const char* bodyName)
 
 
 void RubeBodyManager::each(std::function<void(RubeBody* body, cocos2d::Node* node)> function) {
-    int countBodies = this->bodies.size();
-    int countBodyNodes = this->bodyNodes.size();
+    int countBodies = static_cast<int>(this->bodies.size());
+    int countBodyNodes = static_cast<int>(this->bodyNodes.size());
     if (countBodies != countBodyNodes) {
         log("count mismatch on RubeBodyManager::each(%d != %d)", countBodies, countBodyNodes);
         return;

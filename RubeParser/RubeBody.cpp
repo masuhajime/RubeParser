@@ -47,6 +47,10 @@ bool RubeBody::isName(const char* name) {
     return 0 == this->name.compare(name);
 }
 
+cocos2d::Vec2 RubeBody::getPositionScaledAndOffset() {
+    return (this->position * scale) + offset;
+}
+
 void RubeBody::addImageIndex(int imageIndex) {
     this->imageIndexes.push_back(imageIndex);
 }
