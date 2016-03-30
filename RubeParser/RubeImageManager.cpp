@@ -18,6 +18,7 @@ cocos2d::Sprite* RubeImageManager::createSpriteAt(int index)
     sprite->setRotation(CC_RADIANS_TO_DEGREES(-rubeImage->getAngle()));
     sprite->setPosition(rubeImage->getPosition() * rubeObjectScale);
     sprite->setFlippedX(rubeImage->getFlip());
+    sprite->setName(rubeImage->getName());
     return sprite;
 }
 
