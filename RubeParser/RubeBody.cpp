@@ -76,6 +76,17 @@ cocos2d::PhysicsBody* RubeBody::createPhysicsBody() {
     return pb;
 }
 
+
+bool RubeBody::hasBitPlaneInFixtures(const int bitplane)
+{
+    for (RubeFixture* fixture: this->fixtures) {
+        if (fixture->getFilterCategoryBits() & bitplane) {
+            return true;
+        }
+    }
+    return false;
+}
+
 RubeBody::~RubeBody() {
     for (auto fixture: fixtures) {
         delete fixture;

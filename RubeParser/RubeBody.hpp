@@ -44,6 +44,7 @@ public:
     cocos2d::PhysicsBody* createPhysicsBody();
     
     bool isName(const char* name);
+    bool hasBitPlaneInFixtures(const int bitplane);
     
     cocos2d::Vec2 getPositionScaledAndOffset();
     
