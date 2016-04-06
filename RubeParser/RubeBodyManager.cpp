@@ -26,7 +26,7 @@ cocos2d::Node* RubeBodyManager::createNodeFromBody(RubeBody* rubeBody)
         node->addComponent(physicsBody);
     }
     node->setName(rubeBody->getName());
-    node->setRotation(CC_RADIANS_TO_DEGREES(rubeBody->getAngle()));
+    node->setRotation(CC_RADIANS_TO_DEGREES(-rubeBody->getAngle()));
     bodyNodes[rubeBody->getIndexBody()] = node;
     return node;
 }
